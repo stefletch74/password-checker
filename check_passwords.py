@@ -38,5 +38,5 @@ def check_pwned_passwords(password_file):
         print("\nNo exposed passwords found.")
 
 # Example Usage:
-password_file = '<mypasswords>.csv'  # Replace with your password file's name
+password_file = r"C:\Users\smfle\Downloads\bitwarden_export_20250227162750.csv"
 check_pwned_passwords(password_file)
