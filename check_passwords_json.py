@@ -17,7 +17,7 @@ def check_bitwarden_login_pwned_from_folder(folder_path):
         
         # Assuming there's only one JSON file, process the first one found
         json_file = json_files[0]
-        print(f"Process JSON file: {json_file}")
+        print(f"Processing JSON file: {json_file}")
 
         with open(json_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -60,7 +60,7 @@ def check_bitwarden_login_pwned_from_folder(folder_path):
         return None
 
 # Example Usage:
-folder_path = r"C:\Users\smfle\Downloads"
+folder_path = os.path.join(os.path.expanduser("~"), "Downloads") # cross platform solution.
 logins = check_bitwarden_login_pwned_from_folder(folder_path)
 
 if logins:
