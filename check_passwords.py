@@ -28,7 +28,8 @@ def check_pwned_passwords(password_file):
                     break  # Password found, no need to check other suffixes
 
         else:
-            print(f"Error checking password '{password}': API request failed with status code {response.status_code}")
+            print(f"Error checking password '{password}': 
+                API request failed with status code {response.status_code}")
 
     if pwned_passwords:
         print("\nExposed Passwords:")
