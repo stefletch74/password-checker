@@ -1,11 +1,24 @@
 import hashlib
 import requests
 import json
+import os
+import glob
 
-def check_bitwarden_login_pwned(json_file):
+def check_bitwarden_login_pwned_from_folder(folder_path):
     """Checks Bitwarden logins against the HIBP Range API and returns pwned logins."""
 
     try:
+        # Search for JSON files in the spceified folder
+        json_files = glob.glob(os.path.join(folder_path, "*.json"))
+
+        if not json_files:
+            print(f"Error: No JSON files foind in '{folder_path}'.")
+            return None
+        
+        # Assuming there's only one JSON file, process the first one found
+        json_file = json_files[0]
+        print(f"Process JSON file: {json_file}")
+
         with open(json_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
@@ -47,8 +60,8 @@ def check_bitwarden_login_pwned(json_file):
         return None
 
 # Example Usage:
-json_file = r"C:\Users\smfle\Downloads\bitwarden_export_20250228094914.json"
-logins = check_bitwarden_login_pwned(json_file)
+folder_path = r"C:\Users\smfle\Downloads"
+logins = check_bitwarden_login_pwned_from_folder(folder_path)
 
 if logins:
     print("Pwned logins (uri, username, password):")
